@@ -14,10 +14,12 @@ var prerender = module.exports = function(req, res, next) {
         });
         return res.end(cachedRender);
       } else if (typeof cachedRender == 'object') {
+        if (cachedRender.location) {
+          res.setHeader('Location', cachedRender.location);
+        }
         res.writeHead(cachedRender.status || 200, {
           "Content-Type": "text/html"
         });
-        console.log('test2');
         return res.end(cachedRender.body || '');
       }
     }
