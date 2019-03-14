@@ -17,6 +17,7 @@ var prerender = module.exports = function(req, res, next) {
         res.writeHead(cachedRender.status || 200, {
           "Content-Type": "text/html"
         });
+        console.log('test');
         return res.end(cachedRender.body || '');
       }
     }
